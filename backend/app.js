@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const app = express();
 
 mongoose
-    .connect("mongodb://localhost:27017//HCOE")
+    .connect("mongodb://localhost:27017/HCOE")
     .then((conn) => console.log(`connected to db ${conn.connection.host}`))
     .catch((error) => console.log("Error connecting to db",error.message))
 

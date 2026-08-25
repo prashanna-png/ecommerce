@@ -1,25 +1,32 @@
-import products from "../model/products.js";
+import Product from "../model/products.js";
 
-const getProducts = (req,res)=>{
+const getProducts = async (req,res)=>{
+  const products = await Product.find();
   res.send(products);
 }
 
-const addProducts = (req,res)=>{
-  const data = req.body;
-  products.push(data);
-  res.send({message: "products added sucesssfully"});
+const addProducts = async (req,res)=>{
+  const newProduct = {
+    name: 'Sample Name',
+    price: 10,
+    description: 'Sample Description',
+    brand: 'Sample Brand',
+    category:'sample Category'
+  };
+  const product = await Product.create(newProduct);
+  res.send({message:"Products added successfully"});
 }
 
-const getProductById = (req,res)=>{
-  const { id } = req.params;
-  const product = products.find((product)=> product.id == id);
+const getProductById =async (req,res)=>{
+  const {id} = req.params;
+  const product = await Product.findById(id);
+
   if(product){
-    res.send(product)
+    res.send(product);
   }
   else{
-    res.statusCode(404).send({error:"product not found"});
+    res.status(404).send({error: "product not found"});
   }
-  console.log(product.id);
 }
 
 export {getProducts, addProducts, getProductById};
