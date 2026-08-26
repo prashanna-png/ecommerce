@@ -7,9 +7,9 @@ const getUser = async (req,res)=>{
 
 const addUsers = async (req,res)=>{
   const newUser = {
-    fullName:'sample user',
-    email:'sample email1',
-    password:'sample password',
+    fullName:'Prashanna Dongol',
+    email:'prashanna@gmail.com',
+    password:'prashan@123',
     isAdmin: true
   };
   const users = await User.create(newUser);

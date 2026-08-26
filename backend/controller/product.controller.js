@@ -29,4 +29,34 @@ const getProductById =async (req,res)=>{
   }
 }
 
-export {getProducts, addProducts, getProductById};
+const updateProduct = async(req,res)=>{
+  const {id} = req.params;
+  const {name,price,category,brand,image ,description} = req.body;
+  const product = await Product.findById(id);
+
+  if(!product) return res.status(404).send({error: "product not found"});
+
+  product.name = name || product.name;
+  product.price = price || product.price;
+  product.category = category || product.category;
+  product.brand = brand || product.brand;
+  product.image = image || product.image;
+  product.description = price || product.description;
+
+  await product.save();
+  res.send({message:'product updated'});
+}
+
+const deleteProduct = async(req,res)=>{
+  const {id} = req.params;
+  const product = await Product.findById(id);
+  if(!product) 
+    return res.status(404).send({error:'product no found'});
+
+  await product.deleteOne();
+  res.send({error:'product Deleted'});
+
+  // const product = await Product.findByIdAndDelete(id);
+}
+
+export {getProducts, addProducts, getProductById, updateProduct, deleteProduct};
