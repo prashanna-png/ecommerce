@@ -1,5 +1,6 @@
 import express from "express";
-import productRoutes from "./routes/product.route.js";
+import productRouter from "./routes/product.route.js";
+import userRouter from "./routes/user.route.js";
 import mongoose from "mongoose";
 
 const app = express();
@@ -16,7 +17,8 @@ app.get("/", (req, res) => {
     res.send({ message: "Server is up and running" });
 });
 
-app.use("/api/products", productRoutes);
+app.use("/api/products", productRouter);
+app.use("/api/auth",userRouter);
 
 app.listen(3000, () => {
     console.log("Server is up and running");
