@@ -1,4 +1,5 @@
 import User from '../model/user.js';
+import createToken from '../utils/createToken.js';
 
 const signup = async (req,res)=>{
   const {fullName, email, password,isAdmin} = req.body;
@@ -32,6 +33,7 @@ const login = async (req,res)=>{
     return res.status(404).send({error:"User not registered"});
 
   if(await user.comparePassword(password)){
+    createToken(user._id,res);
     res.send({
       message:"login successful",
       user:{
@@ -42,8 +44,15 @@ const login = async (req,res)=>{
     });
   }
   else{
-    res.status(404).send({errro:"password not matched"});
+    res.status(404).send({error:"password not matched"});
   }
 }
 
-export {signup,login};
+const logout = async(req,res)=>{
+  res.clearCookie('jwt');
+  res.send({message:"logout successfult"});
+};
+
+export {signup,login, logout};
+
+//update name email password

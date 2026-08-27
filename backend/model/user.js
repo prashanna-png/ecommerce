@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema({
   },
 }, {timestamps:true});
 
+//this is done before saving the password to mongodb
+//save is a buildin keyword
+
 userSchema.pre('save', async function (next){
   if(!this.isModified("password")){
     return;
