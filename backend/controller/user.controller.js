@@ -29,7 +29,7 @@ const login = async (req,res)=>{
   const {email,password} = req.body;
   const user = await User.findOne({email});
 
-  if(!user) 
+  if(!user)
     return res.status(404).send({error:"User not registered"});
 
   if(await user.comparePassword(password)){
@@ -53,6 +53,22 @@ const logout = async(req,res)=>{
   res.send({message:"logout successfult"});
 };
 
-export {signup,login, logout};
+const updateUser = async(req,res)=>{
+  const {id}=req.params;
+  const {fullName,email,password} = req.body;
+  const user = await User.findById({_id: id});
+
+  if(!user)
+    return res.status(404).send({error:"user not found!"});
+
+  user.fullName = fullName || user.fullName;
+  user.email = email || user.email;
+  user.password = password || user.password;
+
+  await user.save();
+  res.send({message:"user updated"});
+}
+
+export {signup,login, logout, updateUser};
 
 //update name email password
