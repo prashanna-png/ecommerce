@@ -44,4 +44,4 @@ const getOrderById = async (req,res)=>{
   res.send(order);
 }
 
-export {addOrder,getOrders};
+export {addOrder,getOrders, getOrderById};
