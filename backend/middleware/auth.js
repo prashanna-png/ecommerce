@@ -25,6 +25,7 @@ const checkAuth = async (req, res, next) => {
             fullName: user.fullName,
             email: user.email,
             isAdmin: user.isAdmin,
+            _id: user._id,
         };
 
         next();

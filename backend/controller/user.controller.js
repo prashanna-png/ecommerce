@@ -2,18 +2,17 @@ import User from '../model/user.js';
 import createToken from '../utils/createToken.js';
 
 const signup = async (req,res)=>{
-  const {fullName, email, password} = req.body;
+  const {fullName, email, password, isAdmin} = req.body;
   const user = await User.findOne({email});
 
   if(user) 
     return res.status(400).send({error:'user already exist'});
 
-
   const newUser = await User.create({
     fullName,
     email,
     password,
-    isAdmin: false});
+    isAdmin});
 
   res.send({
     message:'User create',
