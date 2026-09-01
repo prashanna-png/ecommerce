@@ -36,8 +36,8 @@ const getOrders = async (req,res)=>{
 };
 
 const getOrderById = async (req,res)=>{
-  const {id} = req.parms;
-  const order = await Order.findById(id);
+  const {id} = req.params;
+  const order = await Order.findById({_id: id});
   if(!order){
     return res.status(404).send({error:"order not found"});
   }
