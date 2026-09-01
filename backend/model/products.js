@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema({
     default:0
   },
   numReviews:{
-    type: String,
+    type: Number,
     default:0
   },
   image:{

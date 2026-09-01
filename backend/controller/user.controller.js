@@ -2,7 +2,7 @@ import User from '../model/user.js';
 import createToken from '../utils/createToken.js';
 
 const signup = async (req,res)=>{
-  const {fullName, email, password,isAdmin} = req.body;
+  const {fullName, email, password} = req.body;
   const user = await User.findOne({email});
 
   if(user) 
@@ -13,7 +13,7 @@ const signup = async (req,res)=>{
     fullName,
     email,
     password,
-    isAdmin});
+    isAdmin: false});
 
   res.send({
     message:'User create',
@@ -66,7 +66,10 @@ const updateUser = async(req,res)=>{
   user.password = password || user.password;
 
   await user.save();
-  res.send({message:"user updated"});
+  res.send({message:"user updated sucessfully"});
+
+  console.log(user.fullName);
+  console.log(user.email);
 }
 
 export {signup,login, logout, updateUser};

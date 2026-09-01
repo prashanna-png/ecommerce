@@ -6,12 +6,15 @@ const getProducts = async (req,res)=>{
 }
 
 const addProducts = async (req,res)=>{
+  const {name,price,description,brand,category,image} = req.body;
+
   const newProduct = {
-    name: 'Sample Name',
-    price: 10,
-    description: 'Sample Description',
-    brand: 'Sample Brand',
-    category:'sample Category'
+    name,
+    price,
+    description,
+    brand,
+    category,
+    image
   };
   const product = await Product.create(newProduct);
   res.send({message:"Products added successfully"});
@@ -41,7 +44,7 @@ const updateProduct = async(req,res)=>{
   product.category = category || product.category;
   product.brand = brand || product.brand;
   product.image = image || product.image;
-  product.description = price || product.description;
+  product.description = description || product.description;
 
   await product.save();
   res.send({message:'product updated'});
@@ -54,7 +57,7 @@ const deleteProduct = async(req,res)=>{
     return res.status(404).send({error:'product no found'});
 
   await product.deleteOne();
-  res.send({error:'product Deleted'});
+  res.send({message:'product Deleted'});
 
   // const product = await Product.findByIdAndDelete(id);
 }

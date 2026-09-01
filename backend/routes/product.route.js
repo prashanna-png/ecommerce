@@ -8,18 +8,19 @@ import {
     deleteProduct
 } from "../controller/product.controller.js";
 
+import { checkAuth, checkAdmin } from "../middleware/auth.js";
 
 const router = express.Router();
 
 router.get("/", getProducts);
 
-router.post("/", addProducts);
+router.post("/", checkAuth, checkAdmin, addProducts);
 
 router.get("/:id", getProductById);
 
-router.put("/:id",updateProduct);
+router.put("/:id", checkAuth, checkAdmin, updateProduct);
 
-router.delete("/:id",deleteProduct);
+router.delete("/:id", checkAuth, checkAdmin, deleteProduct);
 
 
 export default router;
