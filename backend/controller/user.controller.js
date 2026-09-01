@@ -1,4 +1,4 @@
-import User from '../model/user.js';
+import User from '../models/user.js';
 import createToken from '../utils/createToken.js';
 
 const signup = async (req,res)=>{

@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema(
         },
         image: {
           type: String,
-          required: true,
+          default: "/images/sample.jpg",
         },
         quantity: {
           type: Number,
@@ -68,11 +68,11 @@ const orderSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      default:"cod",
+      default: "cod",
     },
     isPaid: {
       type: Boolean,
-      deafault: false,
+      default: false,
     },
     isDelivered: {
       type: Boolean,

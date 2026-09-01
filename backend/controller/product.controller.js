@@ -1,4 +1,4 @@
-import Product from "../model/products.js";
+import Product from "../models/products.js";
 
 const getProducts = async (req,res)=>{
   const products = await Product.find().populate("user","fullName email -_id");

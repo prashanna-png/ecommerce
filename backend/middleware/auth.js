@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../model/user.js";
+import User from "../models/user.js";
 
 const checkAuth = async (req, res, next) => {
     const token = req.cookies.jwt;

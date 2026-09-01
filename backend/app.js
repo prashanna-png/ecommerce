@@ -4,6 +4,7 @@ import userRouter from "./routes/user.route.js";
 import mongoose from "mongoose";
 import logger from "./middleware/logger.js";
 import cookieParser from "cookie-parser";
+import orderRouter from './routes/order.route.js'
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.get("/", (req, res) => {
 app.use("/api/products", projectRouter);
 
 app.use("/api/auth", userRouter);
+
+app.use("/api/orders",orderRouter);
 
 app.listen(3000, () => {
     console.log("Server is up and running");
