@@ -22,5 +22,4 @@ router.put("/:id", checkAuth, checkAdmin, updateProduct);
 
 router.delete("/:id", checkAuth, checkAdmin, deleteProduct);
 
-
 export default router;
