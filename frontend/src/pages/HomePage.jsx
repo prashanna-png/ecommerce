@@ -1,4 +1,6 @@
 import Product from "../components/Product.jsx";
+import {Row,Col} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const products = [
   {
@@ -79,7 +81,17 @@ function HomePage() {
   return (
     <>
       <h2>Latest Product</h2>
-      <Product product={products[0]} />
+      {/* <Product product={products[0]} /> */}
+
+      <Container>
+        <Row>
+          {products.map((product) => (
+            <Col key={product.name} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </>
   );
 }
