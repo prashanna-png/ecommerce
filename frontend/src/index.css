@@ -1,4 +1,17 @@
-.rating span {
+.rating svg {
   color: orange;
   margin-right: 2px;
+}
+
+.rating text{
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-left: 0.4rem;
+}
+
+.product-title{
+  height: 2.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
